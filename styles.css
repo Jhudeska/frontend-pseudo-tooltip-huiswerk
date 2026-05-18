@@ -7,11 +7,52 @@
 
 body {
     color: white;
+    position: relative;
+    display: inline-block;
+}
+
+/*-----------------opdracht 1------------------*/
+.para:before {
+    content:"\201C ";
+}
+
+.para:after {
+    content:" \201D";
 }
 
 
+.copyright:after {
+    content:" \00a9";
+}
+/*-----------------opdracht 2------------------*/
+/* Tooltip voor .highlight */
+.highlight {
+    position: relative; /* Belangrijk! pseudo-element wordt relatief aan deze span geplaatst */
+    cursor: pointer;    /* Optioneel: laat zien dat er iets interactiefs is */
+}
 
+/* Tooltip tekst */
+.highlight::after {
+    content: "Dit is een latijns woord."; /* De tooltip tekst */
+    position: absolute;
+    bottom: 120%;       /* Boven het woord, beetje ruimte */
+    left: 50%;          /* Beginpunt in het midden van het woord */
+    transform: translateX(-50%); /* Perfect centreren */
+    background-color: hsl(29, 100%, 47%);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    white-space: nowrap; /* Voorkomt dat lange woorden breken */
+    opacity: 0;          /* Verborgen standaard */
+    pointer-events: none; /* Zorgt dat tooltip hover niet blokkeert */
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+}
 
+/* Tooltip verschijnt bij hover */
+.highlight:hover::after {
+    opacity: 1;
+}
 
 /* ------------------------------- Base Styles: don't change this!  -------------------------------- */
 
@@ -58,3 +99,5 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
+
